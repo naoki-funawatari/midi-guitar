@@ -1,4 +1,4 @@
-import type { Scale } from "@/assets/scale";
+import type { Scale } from "@/assets/guitar/scale";
 export type Fingerboard = {
   [index: string]: Scale;
 };

@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
-import fingerboard from "@/assets/fingerboard";
-import String from "@/features/String";
+import String from "@/features/guitar/String";
+import fingerboard from "@/assets/guitar/fingerboard";
 
 export const useGuitar = () => {
   const strings = useMemo(() => {

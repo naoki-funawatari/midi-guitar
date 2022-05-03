@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { languageStore } from "@/features/Language";
+import { languageStore } from "@/features/guitar/Language";
 
 interface Props {
   stringNo: string;

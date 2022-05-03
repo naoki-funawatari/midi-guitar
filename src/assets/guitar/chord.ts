@@ -1,4 +1,4 @@
-import scale from "@/assets/scale";
+import scale from "@/assets/guitar/scale";
 
 export type Chord = {
   [index: string]: {

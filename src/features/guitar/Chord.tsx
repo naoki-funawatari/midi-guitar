@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
-import { useGuitar } from "@/features/Fingerboard";
-import { languageStore } from "@/features/Language";
-import chord from "@/assets/chord";
+import { useGuitar } from "@/features/guitar/Fingerboard";
+import { languageStore } from "@/features/guitar/Language";
+import chord from "@/assets/guitar/chord";
 
 export default function Chord() {
   const { sound } = useGuitar();
