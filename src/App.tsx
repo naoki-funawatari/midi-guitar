@@ -32,7 +32,7 @@ export default function App() {
       <div className="string">
         <div>&nbsp;</div>
         {[...Array(23).keys()].map(o => (
-          <div key={o} className="fret no-border">
+          <div key={o} className="fret fret-no">
             {o}
           </div>
         ))}
@@ -47,7 +47,7 @@ export default function App() {
               const key = `strings-${stringNo}-flet-${fret.id}`;
               return (
                 <div key={key} className="fret">
-                  {fret.ja}
+                  <button onClick={sound(fret.frequency)}>{fret.ja}</button>
                 </div>
               );
             })}
