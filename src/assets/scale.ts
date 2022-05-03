@@ -1,5 +1,14 @@
 // https://www.aihara.co.jp/~taiji/browser-security/js/equal_temperament.html
 // https://inalesson.com/frequency_list/2417/
+export type Scale = {
+  [index: string]: {
+    id: number;
+    frequency: number;
+    ja: string;
+    en: string;
+  };
+};
+
 export default {
   A0: { id: 1, frequency: 27.5, ja: "ラ0", en: "A0" },
   "A#0": { id: 2, frequency: 29.135, ja: "ラ♯0", en: "A#0" },
@@ -89,4 +98,4 @@ export default {
   "A#7": { id: 86, frequency: 3729.31, ja: "ラ♯7", en: "A#7" },
   B7: { id: 87, frequency: 3951.066, ja: "シ7", en: "B7" },
   C8: { id: 88, frequency: 4186.009, ja: "ド8", en: "C8" },
-};
+} as Scale;

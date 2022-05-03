@@ -1,3 +1,8 @@
+import type { Scale } from "@/assets/scale";
+export type Fingerboard = {
+  [index: string]: Scale;
+};
+
 export default {
   6: {
     E2: { id: 20, frequency: 82.407, ja: "ミ2", en: "E2" },
@@ -149,4 +154,4 @@ export default {
     "C#6": { id: 65, frequency: 1108.731, ja: "ド♯6", en: "C#6" },
     D6: { id: 66, frequency: 1174.659, ja: "レ6", en: "D6" },
   },
-};
+} as Fingerboard;

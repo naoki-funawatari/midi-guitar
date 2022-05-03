@@ -1,10 +1,14 @@
-import fingerboard from "@/assets/fingerboard";
 import { useCallback, useMemo } from "react";
+import fingerboard from "@/assets/fingerboard";
+import String from "@/features/String";
 
 export const useGuitar = () => {
   const strings = useMemo(() => {
-    const strings = Object.entries(fingerboard);
-    return strings.sort((a, b) => b[0].localeCompare(a[0]));
+    const strings = Object.entries(fingerboard).map(o => ({
+      stringNo: o[0],
+      scale: o[1],
+    }));
+    return strings.sort((a, b) => b.stringNo.localeCompare(a.stringNo));
   }, []);
 
   // http://var.blog.jp/archives/84027358.html
@@ -46,21 +50,8 @@ export default function Fingerboard() {
         ))}
       </div>
       {strings.map(string => {
-        const [stringNo, frets] = string;
-        const key = `strings-${stringNo}`;
-        return (
-          <div key={key} className="string">
-            <div>{stringNo}弦</div>
-            {Object.values(frets).map(fret => {
-              const key = `strings-${stringNo}-flet-${fret.id}`;
-              return (
-                <div key={key} className="fret">
-                  <button onClick={sound([fret.frequency])}>{fret.ja}</button>
-                </div>
-              );
-            })}
-          </div>
-        );
+        const key = `strings-${string.stringNo}`;
+        return <String key={key} {...{ ...string, sound }} />;
       })}
     </div>
   );
