@@ -4,7 +4,7 @@ import "@/assets/style.scss";
 
 // http://var.blog.jp/archives/84027358.html
 // http://curtaincall.weblike.jp/portfolio-web-sounder/webaudioapi-basic/oscillator
-const sound = (frequency: number) => {
+const sound = (frequency: number) => () => {
   const audioContext = new AudioContext();
   const gainNode = audioContext.createGain();
   gainNode.gain.value = 0.1;
@@ -37,16 +37,23 @@ export default function App() {
           </div>
         ))}
       </div>
-      {strings.map(string => (
-        <div key={`strings-${string[0]}`} className="string">
-          <div>{string[0]}</div>
-          {string[1].map(fret => (
-            <div key={`strings-${string[0]}-flet-${fret.id}`} className="fret">
-              {fret.ja}
-            </div>
-          ))}
-        </div>
-      ))}
+      {strings.map(string => {
+        const [stringNo, frets] = string;
+        const key = `strings-${stringNo}`;
+        return (
+          <div key={key} className="string">
+            <div>{stringNo}弦</div>
+            {frets.map(fret => {
+              const key = `strings-${stringNo}-flet-${fret.id}`;
+              return (
+                <div key={key} className="fret">
+                  {fret.ja}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 }

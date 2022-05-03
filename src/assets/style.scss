@@ -5,20 +5,22 @@
   text-align: center;
 
   .string {
-    width: 80px;
     display: flex;
     flex-direction: column;
     row-gap: 3px;
 
     .fret {
+      width: 80px;
       height: 30px;
       border: 1px solid black;
+      border-radius: 3px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
     .no-border {
+      width: 40px;
       border: none;
       border: 1px solid transparent;
     }
