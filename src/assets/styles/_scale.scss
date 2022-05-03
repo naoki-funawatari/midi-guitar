@@ -1,0 +1,13 @@
+.scale {
+  padding: 20px;
+
+  .box {
+    display: flex;
+
+    span {
+      width: 80px;
+      border: 1px solid black;
+      text-align: center;
+    }
+  }
+}
