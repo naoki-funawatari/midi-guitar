@@ -8,7 +8,7 @@ export default function Language(props: Props) {
   const { language, japanese, english } = props;
 
   return (
-    <div>
+    <div className="language">
       <label>
         <input type="radio" checked={language === "ja"} onChange={japanese} />
         japanese

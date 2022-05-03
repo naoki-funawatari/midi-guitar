@@ -19,9 +19,7 @@ export default function String(props: Props) {
 
   return (
     <div key={key} className="string">
-      <div>
-        {stringNo}弦{language}
-      </div>
+      <div>{stringNo}弦</div>
       {Object.values(scale).map(fret => {
         const key = `strings-${stringNo}-flet-${fret.id}`;
         return (

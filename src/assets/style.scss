@@ -1,8 +1,24 @@
 #root {
   padding: 20px;
-  display: flex;
-  flex-direction: row;
-  column-gap: 20px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
+}
+
+.language {
+  grid-column: 1/3;
+  grid-row: 1/2;
+}
+
+.fingerboard {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.chord {
+  grid-column: 2/3;
+  grid-row: 1/3;
 }
 
 .fingerboard {
@@ -36,8 +52,6 @@
 }
 
 .chord {
-  flex-grow: 1;
-
   button {
     margin: 20px;
     width: 100px;
