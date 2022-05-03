@@ -41,7 +41,11 @@ export default (env, options) => {
           use: [
             {
               loader: "babel-loader",
-              options: { presets: ["@babel/preset-env", "@babel/react"] },
+              options: {
+                presets: ["@babel/preset-env", "@babel/react"],
+                // https://cpoint-lab.co.jp/article/202107/20491/
+                plugins: ["@babel/plugin-transform-runtime"],
+              },
             },
             {
               loader: "ts-loader",
