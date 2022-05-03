@@ -3,7 +3,7 @@ import scale from "@/assets/scale";
 export type Chord = {
   [index: string]: {
     [key: string]: string | number[];
-    frequency: number[];
+    frequencies: number[];
     ja: string;
     en: string;
   };
@@ -11,18 +11,18 @@ export type Chord = {
 
 export default {
   C3: {
-    frequency: [scale.C3.frequency, scale.E3.frequency, scale.G3.frequency],
-    ja: "ド3",
-    en: "C3",
+    frequencies: [scale.C3.frequency, scale.E3.frequency, scale.G3.frequency],
+    ja: "ド",
+    en: "C",
   },
   D3: {
-    frequency: [scale.D3.frequency, scale.F3.frequency, scale.A3.frequency],
-    ja: "レ3",
-    en: "D3",
+    frequencies: [scale.D3.frequency, scale.F3.frequency, scale.A3.frequency],
+    ja: "レ",
+    en: "D",
   },
   E3: {
-    frequency: [scale.E3.frequency, scale.G3.frequency, scale.B3.frequency],
-    ja: "ミ3",
-    en: "E3",
+    frequencies: [scale.E3.frequency, scale.G3.frequency, scale.B3.frequency],
+    ja: "ミ",
+    en: "E",
   },
 } as Chord;
