@@ -1,11 +1,16 @@
-interface Props {
-  language: string;
-  japanese: () => void;
-  english: () => void;
-}
+import { atom, useRecoilState } from "recoil";
 
-export default function Language(props: Props) {
-  const { language, japanese, english } = props;
+export const languageStore = atom({ key: "languageStore", default: "ja" });
+
+const useSwitchLanguage = () => {
+  const [language, setLanguage] = useRecoilState(languageStore);
+  const japanese = () => setLanguage("ja");
+  const english = () => setLanguage("en");
+  return { language, japanese, english };
+};
+
+export default function Language() {
+  const { language, japanese, english } = useSwitchLanguage();
 
   return (
     <div className="language">

@@ -1,3 +1,6 @@
+import { useRecoilValue } from "recoil";
+import { languageStore } from "@/features/Language";
+
 interface Props {
   stringNo: string;
   scale: {
@@ -10,11 +13,10 @@ interface Props {
     };
   };
   sound: (frequency: number[]) => () => void;
-  language: string;
 }
 
-export default function String(props: Props) {
-  const { stringNo, scale, sound, language } = props;
+export default function String({ stringNo, scale, sound }: Props) {
+  const language = useRecoilValue(languageStore);
   const key = `strings-${stringNo}`;
 
   return (

@@ -2,10 +2,6 @@ import { useCallback, useMemo } from "react";
 import fingerboard from "@/assets/fingerboard";
 import String from "@/features/String";
 
-interface Props {
-  language: string;
-}
-
 export const useGuitar = () => {
   const strings = useMemo(() => {
     const strings = Object.entries(fingerboard).map(o => ({
@@ -41,7 +37,7 @@ export const useGuitar = () => {
   return { strings, sound };
 };
 
-export default function Fingerboard({ language }: Props) {
+export default function Fingerboard() {
   const { strings, sound } = useGuitar();
 
   return (
@@ -56,7 +52,7 @@ export default function Fingerboard({ language }: Props) {
       </div>
       {strings.map(string => {
         const key = `strings-${string.stringNo}`;
-        return <String key={key} {...{ ...string, sound, language }} />;
+        return <String key={key} {...{ ...string, sound }} />;
       })}
     </div>
   );
