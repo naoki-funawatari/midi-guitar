@@ -1,3 +1,26 @@
-.red {
-  color: red;
+.fingerboard {
+  display: flex;
+  flex-direction: row;
+  column-gap: 3px;
+  text-align: center;
+
+  .string {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+
+    .fret {
+      height: 30px;
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .no-border {
+      border: none;
+      border: 1px solid transparent;
+    }
+  }
 }

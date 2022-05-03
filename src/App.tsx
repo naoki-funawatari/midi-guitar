@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
-import scale from "@/assets/scale";
+import fingerboard from "@/assets/fingerboard";
 import "@/assets/style.scss";
 
 // http://var.blog.jp/archives/84027358.html
@@ -20,28 +19,34 @@ const sound = (frequency: number) => {
   oscillator.stop(0.3);
 };
 
-export default function App() {
-  const [volume, setVolume] = useState(0.1);
+const useGuitar = () => {
+  const strings = Object.entries(fingerboard);
+  strings.sort((a, b) => b[0].localeCompare(a[0]));
+  return { strings };
+};
 
+export default function App() {
+  const { strings } = useGuitar();
   return (
-    <div>
-      <div className="red">hello world!</div>
-      <div>{volume}</div>
-      <div>
-        <button onClick={() => setVolume(state => state + 0.1)}>
-          ボリューム＋
-        </button>
-        <button onClick={() => setVolume(state => state - 0.1)}>
-          ボリューム－
-        </button>
-      </div>
-      <div>
-        {scale.map(s => (
-          <button key={s.id} onClick={() => sound(s.frequency)}>
-            {s.name}
-          </button>
+    <div className="fingerboard">
+      <div className="string">
+        <div>&nbsp;</div>
+        {[...Array(23).keys()].map(o => (
+          <div key={o} className="fret no-border">
+            {o}
+          </div>
         ))}
       </div>
+      {strings.map(string => (
+        <div key={`strings-${string[0]}`} className="string">
+          <div>{string[0]}</div>
+          {string[1].map(fret => (
+            <div key={`strings-${string[0]}-flet-${fret.id}`} className="fret">
+              {fret.ja}
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
