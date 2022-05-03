@@ -2,6 +2,10 @@ import { useCallback, useMemo } from "react";
 import fingerboard from "@/assets/fingerboard";
 import String from "@/features/String";
 
+interface Props {
+  language: string;
+}
+
 export const useGuitar = () => {
   const strings = useMemo(() => {
     const strings = Object.entries(fingerboard).map(o => ({
@@ -22,6 +26,7 @@ export const useGuitar = () => {
         gainNode.connect(audioContext.destination);
         const oscillator = audioContext.createOscillator();
         oscillator.type = "sawtooth";
+        oscillator.detune.value = 500;
         oscillator.frequency.value = o;
         oscillator.connect(gainNode);
         // https://www.g200kg.com/jp/docs/webaudio/oscillator.html
@@ -36,7 +41,7 @@ export const useGuitar = () => {
   return { strings, sound };
 };
 
-export default function Fingerboard() {
+export default function Fingerboard({ language }: Props) {
   const { strings, sound } = useGuitar();
 
   return (
@@ -51,7 +56,7 @@ export default function Fingerboard() {
       </div>
       {strings.map(string => {
         const key = `strings-${string.stringNo}`;
-        return <String key={key} {...{ ...string, sound }} />;
+        return <String key={key} {...{ ...string, sound, language }} />;
       })}
     </div>
   );
