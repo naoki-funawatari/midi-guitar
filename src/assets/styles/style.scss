@@ -1,2 +1,14 @@
 @import "scale";
 @import "guitar";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  padding: 20px;
+}
