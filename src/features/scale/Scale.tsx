@@ -1,55 +1,55 @@
+import { useMemo, useState } from "react";
 import tones from "@/assets/scale/tones";
 import type { ITone } from "@/assets/scale/tones";
-import { useState } from "react";
 
 const useScale = () => {
+  const [root, setRoot] = useState(28);
+  const temp = useMemo(
+    () => [...tones.filter(o => o.id >= root).slice(0, 12)],
+    [root]
+  );
   const interval = {
     major: [0, 2, 2, 1, 2, 2, 2],
     minor: [0, 2, 1, 2, 2, 1, 2],
     majorPentatonic: [0, 2, 2, 3, 2],
     minorPentatonic: [0, 3, 2, 2, 3],
   };
-  const [root, setRoot] = useState(28);
-  const majorScale = () => {
+  const majorScale = useMemo(() => {
     const scale: ITone[] = [];
-    const temp = [...tones.filter(o => o.id >= root).slice(0, 12)];
     interval.major.reduce((prev, curr) => {
       scale.push(temp[prev + curr]);
       return prev + curr;
     }, 0);
 
     return scale;
-  };
-  const minorScale = () => {
+  }, [interval.major, temp]);
+  const minorScale = useMemo(() => {
     const scale: ITone[] = [];
-    const temp = [...tones.filter(o => o.id >= root).slice(0, 12)];
     interval.minor.reduce((prev, curr) => {
       scale.push(temp[prev + curr]);
       return prev + curr;
     }, 0);
 
     return scale;
-  };
-  const majorPentatonicScale = () => {
+  }, [interval.minor, temp]);
+  const majorPentatonicScale = useMemo(() => {
     const scale: ITone[] = [];
-    const temp = [...tones.filter(o => o.id >= root).slice(0, 12)];
     interval.majorPentatonic.reduce((prev, curr) => {
       scale.push(temp[prev + curr]);
       return prev + curr;
     }, 0);
 
     return scale;
-  };
-  const minorPentatonicScale = () => {
+  }, [interval.majorPentatonic, temp]);
+  const minorPentatonicScale = useMemo(() => {
     const scale: ITone[] = [];
-    const temp = [...tones.filter(o => o.id >= root).slice(0, 12)];
     interval.minorPentatonic.reduce((prev, curr) => {
       scale.push(temp[prev + curr]);
       return prev + curr;
     }, 0);
 
     return scale;
-  };
+  }, [interval.minorPentatonic, temp]);
 
   return {
     majorScale,
@@ -61,11 +61,8 @@ const useScale = () => {
 };
 
 export default function Scale() {
-  const scale = useScale();
-  const majorScale = scale.majorScale();
-  const minorScale = scale.minorScale();
-  const majorPentatonicScale = scale.majorPentatonicScale();
-  const minorPentatonicScale = scale.minorPentatonicScale();
+  const { majorScale, minorScale, majorPentatonicScale, minorPentatonicScale } =
+    useScale();
 
   return (
     <div className="scale">
