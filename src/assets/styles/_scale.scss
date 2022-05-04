@@ -8,6 +8,14 @@
       width: 80px;
       border: 1px solid black;
       text-align: center;
+
+      &.main {
+        color: red;
+      }
+
+      &.sub {
+        color: blue;
+      }
     }
   }
 }

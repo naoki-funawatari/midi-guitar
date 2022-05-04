@@ -1,18 +1,20 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import ToneSelector, { toneSelectorStore } from "@/features/scale/ToneSelector";
 import tones from "@/assets/scale/tones";
 import type { ITone } from "@/assets/scale/tones";
+import { useRecoilValue } from "recoil";
 
 const useScale = () => {
-  const [root, setRoot] = useState(28);
+  const root = useRecoilValue(toneSelectorStore);
   const temp = useMemo(
-    () => [...tones.filter(o => o.id >= root).slice(0, 12)],
+    () => [...tones.filter(o => o.id >= root).slice(0, 13)],
     [root]
   );
   const interval = {
-    major: [0, 2, 2, 1, 2, 2, 2],
-    minor: [0, 2, 1, 2, 2, 1, 2],
-    majorPentatonic: [0, 2, 2, 3, 2],
-    minorPentatonic: [0, 3, 2, 2, 3],
+    major: [0, 2, 2, 1, 2, 2, 2, 1],
+    minor: [0, 2, 1, 2, 2, 1, 2, 2],
+    majorPentatonic: [0, 2, 2, 3, 2, 3],
+    minorPentatonic: [0, 3, 2, 2, 3, 2],
   };
   const majorScale = useMemo(() => {
     const scale: ITone[] = [];
@@ -56,7 +58,6 @@ const useScale = () => {
     minorScale,
     majorPentatonicScale,
     minorPentatonicScale,
-    setRoot,
   };
 };
 
@@ -67,8 +68,10 @@ export default function Scale() {
   return (
     <div className="scale">
       <h1>スケール</h1>
-      <h2>メジャースケール</h2>
+      <ToneSelector />
+      <h3>メジャースケール</h3>
       <div className="box">
+        <span>Ｒ</span>
         <span>全</span>
         <span>全</span>
         <span>半</span>
@@ -78,21 +81,23 @@ export default function Scale() {
         <span>半</span>
       </div>
       <div className="box">
-        <span>Ⅰ</span>
-        <span>Ⅱm</span>
-        <span>Ⅲm</span>
-        <span>Ⅳ</span>
-        <span>Ⅴ</span>
-        <span>Ⅵm</span>
-        <span>Ⅶm(♭5)</span>
+        <span className="main">Ｔ</span>
+        <span className="sub">ＳＤ</span>
+        <span className="sub">Ｔ</span>
+        <span className="main">ＳＤ</span>
+        <span className="main">Ｄ</span>
+        <span className="sub">Ｔ</span>
+        <span className="sub">Ｄ</span>
+        <span className="main">Ｔ</span>
       </div>
       <div className="box">
         {majorScale.map(o => (
           <span key={`major-scale-${o.id}`}>{o.en}</span>
         ))}
       </div>
-      <h2>マイナースケール</h2>
+      <h3>マイナースケール</h3>
       <div className="box">
+        <span>Ｒ</span>
         <span>全</span>
         <span>半</span>
         <span>全</span>
@@ -102,53 +107,58 @@ export default function Scale() {
         <span>全</span>
       </div>
       <div className="box">
-        <span>Ⅰ</span>
-        <span>Ⅱm</span>
-        <span>Ⅲm</span>
-        <span>Ⅳ</span>
-        <span>Ⅴ</span>
-        <span>Ⅵm</span>
-        <span>Ⅶm(♭5)</span>
+        <span className="main">Ｔ</span>
+        <span className="sub">ＳＤ</span>
+        <span className="sub">Ｔ</span>
+        <span className="main">ＳＤ</span>
+        <span className="main">Ｄ</span>
+        <span className="sub">ＳＤ</span>
+        <span className="sub">Ｄ</span>
+        <span className="main">Ｔ</span>
       </div>
       <div className="box">
         {minorScale.map(o => (
           <span key={`minor-scale-${o.id}`}>{o.en}</span>
         ))}
       </div>
-      <h2>メジャーペンタトニックスケール</h2>
+      <h3>メジャーペンタトニックスケール</h3>
       <div className="box">
+        <span>Ｒ</span>
         <span>全</span>
         <span>全</span>
-        <span>半</span>
+        <span>(半+全)</span>
         <span>全</span>
-        <span>全</span>
+        <span>(半+全)</span>
       </div>
       <div className="box">
-        <span>Ⅰ</span>
-        <span>Ⅱm</span>
-        <span>Ⅲm</span>
-        <span>Ⅴ</span>
-        <span>Ⅵm</span>
+        <span className="main">Ｔ</span>
+        <span className="sub">ＳＤ</span>
+        <span className="sub">Ｔ</span>
+        <span className="main">Ｄ</span>
+        <span className="sub">Ｔ</span>
+        <span className="main">Ｔ</span>
       </div>
       <div className="box">
         {majorPentatonicScale.map(o => (
           <span key={`major-pentatonic-scale-${o.id}`}>{o.en}</span>
         ))}
       </div>
-      <h2>マイナーペンタトニックスケール</h2>
+      <h3>マイナーペンタトニックスケール</h3>
       <div className="box">
+        <span>Ｒ</span>
         <span>全</span>
-        <span>全</span>
+        <span>(半+全)</span>
         <span>全</span>
         <span>半</span>
-        <span>全</span>
+        <span>(全+半)</span>
       </div>
       <div className="box">
-        <span>Ⅰ</span>
-        <span>Ⅲm</span>
-        <span>Ⅳ</span>
-        <span>Ⅴ</span>
-        <span>Ⅶm(♭5)</span>
+        <span className="main">Ｔ</span>
+        <span className="sub">Ｔ</span>
+        <span className="main">ＳＤ</span>
+        <span className="main">Ｄ</span>
+        <span className="sub">Ｄ</span>
+        <span className="main">Ｔ</span>
       </div>
       <div className="box">
         {minorPentatonicScale.map(o => (
@@ -158,3 +168,37 @@ export default function Scale() {
     </div>
   );
 }
+/*
+      <div className="box">
+        <span>Ⅰ</span>
+        <span>Ⅱm</span>
+        <span>Ⅲm</span>
+        <span>Ⅳ</span>
+        <span>Ⅴ</span>
+        <span>Ⅵm</span>
+        <span>Ⅶm(♭5)</span>
+      </div>
+      <div className="box">
+        <span>Ⅰm</span>
+        <span>Ⅱm(♭5)</span>
+        <span>Ⅲ</span>
+        <span>Ⅳm</span>
+        <span>Ⅴm</span>
+        <span>Ⅵ</span>
+        <span>Ⅶ</span>
+      </div>
+      <div className="box">
+        <span>Ⅰ</span>
+        <span>Ⅱm</span>
+        <span>Ⅲm</span>
+        <span>Ⅴ</span>
+        <span>Ⅵm</span>
+      </div>
+      <div className="box">
+        <span>Ⅰm</span>
+        <span>Ⅲ</span>
+        <span>Ⅳm</span>
+        <span>Ⅴm</span>
+        <span>Ⅶ</span>
+      </div>
+*/
