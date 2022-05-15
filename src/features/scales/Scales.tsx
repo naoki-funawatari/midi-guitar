@@ -1,18 +1,14 @@
+import { Outlet } from "react-router-dom";
 import ToneSelector from "@/features/scales/ToneSelector";
-import MajorScale from "@/features/scales/MajorScale";
-import MinorScale from "@/features/scales/MinorScale";
-import MajorPentatonicScale from "@/features/scales/MajorPentatonicScale";
-import MinorPentatonicScale from "@/features/scales/MinorPentatonicScale";
+import ScaleSelector from "@/features/scales/ScaleSelector";
 
 export default function Scale() {
   return (
     <div className="scale">
       <h1>スケール</h1>
       <ToneSelector />
-      <MajorScale />
-      <MinorScale />
-      <MajorPentatonicScale />
-      <MinorPentatonicScale />
+      <ScaleSelector />
+      <Outlet />
     </div>
   );
 }
