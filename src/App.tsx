@@ -2,7 +2,7 @@ import { RecoilRoot } from "recoil";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "@/features/top/Header";
 import Top from "@/features/top/Top";
-import Scale from "@/features/scale/Scale";
+import Scale from "@/features/scales/Scales";
 import Guitar from "@/features/guitar/Guitar";
 import "@/assets/styles/style.scss";
 
@@ -13,7 +13,7 @@ export default function App() {
         <Header />
         <Routes>
           <Route index element={<Top />} />
-          <Route path="scale" element={<Scale />} />
+          <Route path="scales" element={<Scale />} />
           <Route path="guitar" element={<Guitar />} />
         </Routes>
       </Router>

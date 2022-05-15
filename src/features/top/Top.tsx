@@ -6,7 +6,7 @@ export default function Top() {
       <h1>トップページ</h1>
       <ul>
         <li>
-          <Link to="/scale">スケール</Link>
+          <Link to="/scales">スケール</Link>
         </li>
         <li>
           <Link to="/guitar">ギター</Link>

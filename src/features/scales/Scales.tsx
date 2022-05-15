@@ -1,5 +1,7 @@
 import { useMemo } from "react";
-import ToneSelector, { toneSelectorStore } from "@/features/scale/ToneSelector";
+import ToneSelector, {
+  toneSelectorStore,
+} from "@/features/scales/ToneSelector";
 import tones from "@/assets/scale/tones";
 import type { ITone } from "@/assets/scale/tones";
 import { useRecoilValue } from "recoil";

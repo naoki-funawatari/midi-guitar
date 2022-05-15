@@ -8,7 +8,7 @@ export default function Header() {
         <button onClick={() => navigate("/")}>TOP</button>
       </div>
       <div>
-        <button onClick={() => navigate("/scale")}>スケール</button>
+        <button onClick={() => navigate("/scales")}>スケール</button>
       </div>
       <div>
         <button onClick={() => navigate("/guitar")}>ギター</button>
