@@ -31,6 +31,7 @@ export default (env, options) => {
     entry: path.join(__dirname, "src", "index.tsx"),
     output: {
       clean: true,
+      publicPath: "/",
       path: path.join(__dirname, "build"),
       filename: `main.${new Date().getTime()}.js`,
     },
