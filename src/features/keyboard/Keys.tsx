@@ -5,6 +5,7 @@ interface Props {
     colSpan: number;
     className: string;
     tone: ITone | undefined;
+    interval: number | undefined;
   }[];
 }
 
@@ -20,7 +21,7 @@ export default function Keys(porps: Props) {
               <div>
                 <div>{o.tone.en}</div>
                 <div>{o.tone.ja}</div>
-                <div></div>
+                <div>{o.interval}</div>
               </div>
             )}
           </td>
