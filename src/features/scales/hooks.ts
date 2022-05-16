@@ -7,7 +7,7 @@ import type { ITone } from "@/assets/scale/tones";
 export const useScale = () => {
   const root = useRecoilValue(toneSelectorStore);
   const temp = useMemo(
-    () => [...tones.filter(o => o.id >= root).slice(0, 24)],
+    () => [...tones.filter(o => o.id >= root.current).slice(0, 24)],
     [root]
   );
   const intervals = {
@@ -20,42 +20,54 @@ export const useScale = () => {
     const scale: { tone: ITone; position: number }[] = [];
     intervals.major.reduce((prev, curr) => {
       const index = prev + curr;
-      scale.push({ tone: temp[index], position: index + 1 });
+      scale.push({
+        tone: temp[index],
+        position: root.current - root.default + index + 1,
+      });
       return prev + curr;
     }, 0);
 
     return scale;
-  }, [intervals.major, temp]);
+  }, [intervals.major, temp, root]);
   const minorScale = useMemo(() => {
     const scale: { tone: ITone; position: number }[] = [];
     intervals.minor.reduce((prev, curr) => {
       const index = prev + curr;
-      scale.push({ tone: temp[index], position: index + 1 });
+      scale.push({
+        tone: temp[index],
+        position: root.current - root.default + index + 1,
+      });
       return prev + curr;
     }, 0);
 
     return scale;
-  }, [intervals.minor, temp]);
+  }, [intervals.minor, temp, root]);
   const majorPentatonicScale = useMemo(() => {
     const scale: { tone: ITone; position: number }[] = [];
     intervals.majorPentatonic.reduce((prev, curr) => {
       const index = prev + curr;
-      scale.push({ tone: temp[index], position: index + 1 });
+      scale.push({
+        tone: temp[index],
+        position: root.current - root.default + index + 1,
+      });
       return prev + curr;
     }, 0);
 
     return scale;
-  }, [intervals.majorPentatonic, temp]);
+  }, [intervals.majorPentatonic, temp, root]);
   const minorPentatonicScale = useMemo(() => {
     const scale: { tone: ITone; position: number }[] = [];
     intervals.minorPentatonic.reduce((prev, curr) => {
       const index = prev + curr;
-      scale.push({ tone: temp[index], position: index + 1 });
+      scale.push({
+        tone: temp[index],
+        position: root.current - root.default + index + 1,
+      });
       return prev + curr;
     }, 0);
 
     return scale;
-  }, [intervals.minorPentatonic, temp]);
+  }, [intervals.minorPentatonic, temp, root]);
 
   return {
     majorScale,

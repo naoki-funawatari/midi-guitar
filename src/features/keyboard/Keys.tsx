@@ -27,7 +27,7 @@ export default function Keys(porps: Props) {
                 <div>{o.tone.en}</div>
                 <div>{o.tone.ja}</div>
                 <div>{o.interval}</div>
-                <div>{positions.includes(o.interval) ? "○" : "✕"}</div>
+                <div>{positions.includes(o.interval) ? "●" : ""}</div>
               </div>
             )}
           </td>
