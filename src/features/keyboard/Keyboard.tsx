@@ -1,4 +1,5 @@
 import { usePianoScale } from "@/features/keyboard/hooks";
+import Keys from "@/features/keyboard/Keys";
 
 export default function Keyboard() {
   const { scale } = usePianoScale();
@@ -44,45 +45,18 @@ export default function Keyboard() {
     { colSpan: 6, className: "front white-key", tone: scale[21] },
     { colSpan: 6, className: "front white-key", tone: scale[23] },
   ];
+  const blankItems = [...Array(84)].map(() => ({
+    colSpan: 1,
+    className: "",
+    tone: undefined,
+  }));
 
   return (
     <table className="keyboard">
       <tbody>
-        <tr>
-          {backItems.map((o, i) => {
-            return (
-              <td key={i} colSpan={o.colSpan} className={o.className}>
-                {o.tone && (
-                  <div>
-                    <div>{o.tone.en}</div>
-                    <div>{o.tone.ja}</div>
-                    <div></div>
-                  </div>
-                )}
-              </td>
-            );
-          })}
-        </tr>
-        <tr>
-          {frontItems.map((o, i) => {
-            return (
-              <td key={i} colSpan={o.colSpan} className={o.className}>
-                {o.tone && (
-                  <div>
-                    <div>{o.tone.en}</div>
-                    <div>{o.tone.ja}</div>
-                    <div></div>
-                  </div>
-                )}
-              </td>
-            );
-          })}
-        </tr>
-        <tr>
-          {[...Array(84)].map((o, i) => (
-            <td key={i}></td>
-          ))}
-        </tr>
+        <Keys {...{ list: backItems }} />
+        <Keys {...{ list: frontItems }} />
+        <Keys {...{ list: blankItems }} />
       </tbody>
     </table>
   );
