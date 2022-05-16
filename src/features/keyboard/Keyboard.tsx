@@ -1,7 +1,16 @@
+import type { ITone } from "@/assets/scale/tones";
 import { usePianoScale } from "@/features/keyboard/hooks";
 import Keys from "@/features/keyboard/Keys";
 
-export default function Keyboard() {
+interface Props {
+  tones: {
+    tone: ITone;
+    position: number;
+  }[];
+}
+
+export default function Keyboard(props: Props) {
+  const { tones } = props;
   const { scale } = usePianoScale();
   const backItems = [
     {
@@ -245,9 +254,9 @@ export default function Keyboard() {
   return (
     <table className="keyboard">
       <tbody>
-        <Keys {...{ list: backItems }} />
-        <Keys {...{ list: frontItems }} />
-        <Keys {...{ list: blankItems }} />
+        <Keys {...{ list: backItems, tones }} />
+        <Keys {...{ list: frontItems, tones }} />
+        <Keys {...{ list: blankItems, tones }} />
       </tbody>
     </table>
   );

@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import ToneSelector from "@/features/scales/ToneSelector";
 import ScaleSelector from "@/features/scales/ScaleSelector";
-import Keyboard from "@/features/keyboard/Keyboard";
 
 export default function Scale() {
   return (
@@ -10,8 +9,6 @@ export default function Scale() {
       <ToneSelector />
       <ScaleSelector />
       <Outlet />
-      <br />
-      <Keyboard />
     </div>
   );
 }

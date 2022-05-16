@@ -7,7 +7,7 @@ import type { ITone } from "@/assets/scale/tones";
 export const useScale = () => {
   const root = useRecoilValue(toneSelectorStore);
   const temp = useMemo(
-    () => [...tones.filter(o => o.id >= root).slice(0, 13)],
+    () => [...tones.filter(o => o.id >= root).slice(0, 24)],
     [root]
   );
   const intervals = {
@@ -17,36 +17,40 @@ export const useScale = () => {
     minorPentatonic: [0, 3, 2, 2, 3, 2],
   };
   const majorScale = useMemo(() => {
-    const scale: ITone[] = [];
+    const scale: { tone: ITone; position: number }[] = [];
     intervals.major.reduce((prev, curr) => {
-      scale.push(temp[prev + curr]);
+      const index = prev + curr;
+      scale.push({ tone: temp[index], position: index + 1 });
       return prev + curr;
     }, 0);
 
     return scale;
   }, [intervals.major, temp]);
   const minorScale = useMemo(() => {
-    const scale: ITone[] = [];
+    const scale: { tone: ITone; position: number }[] = [];
     intervals.minor.reduce((prev, curr) => {
-      scale.push(temp[prev + curr]);
+      const index = prev + curr;
+      scale.push({ tone: temp[index], position: index + 1 });
       return prev + curr;
     }, 0);
 
     return scale;
   }, [intervals.minor, temp]);
   const majorPentatonicScale = useMemo(() => {
-    const scale: ITone[] = [];
+    const scale: { tone: ITone; position: number }[] = [];
     intervals.majorPentatonic.reduce((prev, curr) => {
-      scale.push(temp[prev + curr]);
+      const index = prev + curr;
+      scale.push({ tone: temp[index], position: index + 1 });
       return prev + curr;
     }, 0);
 
     return scale;
   }, [intervals.majorPentatonic, temp]);
   const minorPentatonicScale = useMemo(() => {
-    const scale: ITone[] = [];
+    const scale: { tone: ITone; position: number }[] = [];
     intervals.minorPentatonic.reduce((prev, curr) => {
-      scale.push(temp[prev + curr]);
+      const index = prev + curr;
+      scale.push({ tone: temp[index], position: index + 1 });
       return prev + curr;
     }, 0);
 

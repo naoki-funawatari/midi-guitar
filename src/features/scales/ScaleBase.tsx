@@ -7,7 +7,10 @@ interface Props {
     value: string;
     className: string;
   }[];
-  tones: ITone[];
+  tones: {
+    tone: ITone;
+    position: number;
+  }[];
 }
 
 export default function ScaleBase(props: Props) {
@@ -30,7 +33,7 @@ export default function ScaleBase(props: Props) {
       </div>
       <div className="box">
         {tones.map(o => (
-          <span key={`${title}-${o.id}`}>{o.en}</span>
+          <span key={`${title}-${o.tone.id}`}>{o.tone.en}</span>
         ))}
       </div>
     </div>
