@@ -16,4 +16,16 @@
       }
     }
   }
+
+  .tone-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 20px;
+
+    button {
+      padding: 2px 10px;
+      height: 100%;
+    }
+  }
 }

@@ -7,6 +7,7 @@ export default function Scale() {
     <div className="scale">
       <h1>スケール</h1>
       <ToneSelector />
+      <br />
       <ScaleSelector />
       <Outlet />
     </div>
