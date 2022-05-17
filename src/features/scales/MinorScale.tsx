@@ -1,6 +1,5 @@
 import { useScale } from "@/features/scales/hooks";
 import ScaleBase from "@/features/scales/ScaleBase";
-import Keyboard from "@/features/keyboard/Keyboard";
 
 export default function MinorScale() {
   const { minorScale } = useScale();
@@ -19,11 +18,5 @@ export default function MinorScale() {
     tones: minorScale,
   };
 
-  return (
-    <>
-      <ScaleBase {...props} />
-      <br />
-      <Keyboard {...{ tones: minorScale }} />
-    </>
-  );
+  return <ScaleBase {...props} />;
 }

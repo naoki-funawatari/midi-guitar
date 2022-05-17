@@ -1,6 +1,5 @@
 import { useScale } from "@/features/scales/hooks";
 import ScaleBase from "@/features/scales/ScaleBase";
-import Keyboard from "@/features/keyboard/Keyboard";
 
 export default function MinorPentatonicScale() {
   const { minorPentatonicScale } = useScale();
@@ -17,11 +16,5 @@ export default function MinorPentatonicScale() {
     tones: minorPentatonicScale,
   };
 
-  return (
-    <>
-      <ScaleBase {...props} />
-      <br />
-      <Keyboard {...{ tones: minorPentatonicScale }} />
-    </>
-  );
+  return <ScaleBase {...props} />;
 }

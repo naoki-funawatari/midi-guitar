@@ -1,6 +1,5 @@
 import { useScale } from "@/features/scales/hooks";
 import ScaleBase from "@/features/scales/ScaleBase";
-import Keyboard from "@/features/keyboard/Keyboard";
 
 export default function MajorScale() {
   const { majorScale } = useScale();
@@ -19,11 +18,5 @@ export default function MajorScale() {
     tones: majorScale,
   };
 
-  return (
-    <>
-      <ScaleBase {...props} />
-      <br />
-      <Keyboard {...{ tones: majorScale }} />
-    </>
-  );
+  return <ScaleBase {...props} />;
 }
